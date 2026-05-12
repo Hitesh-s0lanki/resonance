@@ -1,0 +1,52 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI voice app logo">
+  <defs>
+    <linearGradient id="bubbleGradient" x1="204" y1="784" x2="836" y2="244" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#061B9F"/>
+      <stop offset="0.34" stop-color="#1057FF"/>
+      <stop offset="0.66" stop-color="#08BCEB"/>
+      <stop offset="1" stop-color="#BA2DF4"/>
+    </linearGradient>
+    <linearGradient id="faceGradient" x1="578" y1="270" x2="836" y2="774" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06BEEA"/>
+      <stop offset="0.55" stop-color="#00A6F2"/>
+      <stop offset="1" stop-color="#095EE9"/>
+    </linearGradient>
+    <linearGradient id="waveGradient" x1="330" y1="654" x2="652" y2="316" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#006AF2"/>
+      <stop offset="0.46" stop-color="#8238F5"/>
+      <stop offset="0.7" stop-color="#DB31FF"/>
+      <stop offset="1" stop-color="#057FFF"/>
+    </linearGradient>
+    <linearGradient id="orbitGradient" x1="654" y1="244" x2="842" y2="492" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C72BF5"/>
+      <stop offset="0.55" stop-color="#544DF4"/>
+      <stop offset="1" stop-color="#04AEEA"/>
+    </linearGradient>
+    <filter id="softShadow" x="120" y="160" width="790" height="760" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#2743B8" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <!-- Main speech-bubble resonance loop -->
+    <path d="M665 245C541 203 386 224 291 322C190 427 195 588 288 684C332 729 388 755 448 780C467 788 480 806 480 827V874L584 808C622 784 671 777 721 766" stroke="url(#bubbleGradient)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- AI face / voice profile silhouette -->
+    <path d="M578 289C679 317 745 394 762 493C767 524 781 549 806 569L836 594C853 609 846 632 823 637L791 644C769 649 754 668 750 691C739 753 703 779 633 793C599 800 566 812 536 829C618 742 675 630 670 522C666 429 633 350 578 289Z" fill="url(#faceGradient)"/>
+
+    <!-- Soundwave bars -->
+    <rect x="318" y="486" width="34" height="58" rx="17" fill="url(#waveGradient)"/>
+    <rect x="372" y="455" width="42" height="122" rx="21" fill="url(#waveGradient)"/>
+    <rect x="433" y="372" width="48" height="249" rx="24" fill="url(#waveGradient)"/>
+    <rect x="500" y="304" width="54" height="387" rx="27" fill="url(#waveGradient)"/>
+    <rect x="622" y="388" width="48" height="221" rx="24" fill="url(#waveGradient)"/>
+    <rect x="682" y="477" width="40" height="76" rx="20" fill="url(#waveGradient)"/>
+
+    <!-- Orbit / AI connection accent -->
+    <path d="M696 256C747 282 787 326 812 381" stroke="url(#orbitGradient)" stroke-width="18" stroke-linecap="round"/>
+    <path d="M825 425C844 468 849 509 844 548" stroke="url(#orbitGradient)" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="684" cy="253" r="35" stroke="url(#orbitGradient)" stroke-width="22"/>
+    <circle cx="788" cy="370" r="20" fill="url(#orbitGradient)"/>
+    <circle cx="829" cy="522" r="20" fill="url(#orbitGradient)"/>
+  </g>
+</svg>
