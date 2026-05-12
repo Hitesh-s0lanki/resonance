@@ -1,0 +1,2 @@
+npm run type-check
+SKIP_ENV_VALIDATION=1 npm run build

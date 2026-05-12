@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // shadcn-generated UI components and hooks
+    "src/components/ui/**",
+    "src/hooks/use-mobile.ts",
+    // Prisma generated client
+    "src/generated/**",
   ]),
 ]);
 
