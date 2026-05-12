@@ -18,11 +18,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  OrganizationSwitcher,
-  UserButton,
-  useClerk,
-} from "@clerk/nextjs";
+import { OrganizationSwitcher, UserButton, useClerk } from "@clerk/nextjs";
 import {
   type LucideIcon,
   Home,
@@ -148,8 +144,8 @@ export function DashboardSidebar() {
             <Image
               src="/logo.svg"
               alt="Resonance"
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               className="rounded-sm"
             />
             <span className="group-data-[collapsible=icon]:hidden font-semibold text-lg tracking-tighter text-foreground">
