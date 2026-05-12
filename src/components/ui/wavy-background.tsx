@@ -1,5 +1,3 @@
-/* eslint-disable no-var */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,7 +16,7 @@ export const WavyBackground = ({
   waveYOffset = 250,
   ...props
 }: {
-  children?: any;
+  children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
   colors?: string[];
@@ -28,78 +26,69 @@ export const WavyBackground = ({
   speed?: "slow" | "fast";
   waveOpacity?: number;
   waveYOffset?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
-  const noise = createNoise3D();
-  let w: number,
-    h: number,
-    nt: number,
-    i: number,
-    x: number,
-    ctx: any,
-    canvas: any;
+  const noiseRef = useRef(createNoise3D());
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const getSpeed = () => {
-    switch (speed) {
-      case "slow":
-        return 0.001;
-      case "fast":
-        return 0.002;
-      default:
-        return 0.001;
-    }
-  };
+  const animationIdRef = useRef<number>(0);
 
-  const init = () => {
-    canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
-    w = ctx.canvas.width = window.innerWidth;
-    h = ctx.canvas.height = window.innerHeight;
+  const getSpeed = () => (speed === "fast" ? 0.002 : 0.001);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = (ctx.canvas.width = window.innerWidth);
+    let h = (ctx.canvas.height = window.innerHeight);
     ctx.filter = `blur(${blur}px)`;
-    nt = 0;
-    window.onresize = function () {
+    let nt = 0;
+
+    const waveColors = colors ?? [
+      "#38bdf8",
+      "#818cf8",
+      "#c084fc",
+      "#e879f9",
+      "#22d3ee",
+    ];
+
+    const handleResize = () => {
       w = ctx.canvas.width = window.innerWidth;
       h = ctx.canvas.height = window.innerHeight;
       ctx.filter = `blur(${blur}px)`;
     };
-    render();
-  };
+    window.addEventListener("resize", handleResize);
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
-  ];
-  const drawWave = (n: number) => {
-    nt += getSpeed();
-    for (i = 0; i < n; i++) {
-      ctx.beginPath();
-      ctx.lineWidth = waveWidth || 50;
-      ctx.strokeStyle = waveColors[i % waveColors.length];
-      for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + waveYOffset);
+    const drawWave = (n: number) => {
+      nt += getSpeed();
+      for (let i = 0; i < n; i++) {
+        ctx.beginPath();
+        ctx.lineWidth = waveWidth ?? 50;
+        ctx.strokeStyle = waveColors[i % waveColors.length];
+        for (let x = 0; x < w; x += 5) {
+          const y = noiseRef.current(x / 800, 0.3 * i, nt) * 100;
+          ctx.lineTo(x, y + waveYOffset);
+        }
+        ctx.stroke();
+        ctx.closePath();
       }
-      ctx.stroke();
-      ctx.closePath();
-    }
-  };
+    };
 
-  let animationId: number;
-  const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
-    ctx.globalAlpha = waveOpacity || 0.5;
-    ctx.fillRect(0, 0, w, h);
-    drawWave(5);
-    animationId = requestAnimationFrame(render);
-  };
+    const render = () => {
+      ctx.fillStyle = backgroundFill ?? "black";
+      ctx.globalAlpha = waveOpacity ?? 0.5;
+      ctx.fillRect(0, 0, w, h);
+      drawWave(5);
+      animationIdRef.current = requestAnimationFrame(render);
+    };
 
-  useEffect(() => {
-    init();
+    render();
+
     return () => {
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(animationIdRef.current);
+      window.removeEventListener("resize", handleResize);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

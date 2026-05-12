@@ -9,7 +9,7 @@ export default async function AppLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-  const sidebarState = cookieStore.get("sidebar_state")?.value;
+  const sidebarState = cookieStore.get("sidebar:state")?.value;
   const defaultOpen = sidebarState !== "false";
 
   return (
